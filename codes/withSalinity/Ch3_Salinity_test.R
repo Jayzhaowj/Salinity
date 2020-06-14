@@ -7,7 +7,7 @@ source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
 ########constants##########
 
 N <- 3
-
+  
 
 ###########################################
 ### run dynamic programming with optimistic way
