@@ -111,7 +111,7 @@ for (t in N:1){
 ###########################################
 ### run dynamic programming with pessimistic way
 ###########################################
-type <- "Pessimistic"
+type <- "Pessimistic" 
 hyper_par <- list(x0 = numeric(15), P = rep(0.2, 5), 
                   xLB = numeric(15), R = 0.035, type = type, Cgw = Cgw)
 
