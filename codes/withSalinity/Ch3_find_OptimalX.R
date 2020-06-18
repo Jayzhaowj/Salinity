@@ -1,6 +1,7 @@
 library(snowfall)
 library(nloptr)
-dir <- "/Users/johnn/Documents/Research/Salinity/"
+#dir <- "/Users/johnn/Documents/Research/Salinity/"
+dir <- "/soe/wjzhao/project/Salinity/"
 setwd(dir)
 source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
 
