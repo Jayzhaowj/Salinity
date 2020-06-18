@@ -11,7 +11,7 @@ XpF <- seq(50000, 150000, 10000)
 Cgw <- seq(500, 5000, 500)
 
 
-hyper_par <- list(x0 = numeric(15), P = rep(0.2, 5), 
+hyper_par <- list(x0 = numeric(15), P = c(.25, .25, .2, .2, .1), 
                   xLB = numeric(15), R = 0.035, type = type, Cgw = Cgw)
 
 
@@ -38,4 +38,4 @@ temp_OptimalX <- sfLapply(x = Init_Fin_Divde, fun = function(W) findX(init_fin =
 
 OptimalX_backup <- unlist(temp_OptimalX, recursive = FALSE)
 sfStop()
-save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX.RData"))
+save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX2.RData"))
