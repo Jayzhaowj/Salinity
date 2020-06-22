@@ -39,4 +39,4 @@ temp_OptimalX <- sfLapply(x = Init_Fin_Divde, fun = function(W) findX(init_fin =
 
 OptimalX_backup <- unlist(temp_OptimalX, recursive = FALSE)
 sfStop()
-save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX2.RData"))
+save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX3.RData"))
