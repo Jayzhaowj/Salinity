@@ -1,11 +1,12 @@
 library(snowfall)
 library(nloptr)
-dir <- "/Users/johnn/Documents/Research/Salinity/"
-setwd(dir)
+
+setwd("D:/PhD_at_UCD/phd research/20_summer/Salinity")
 source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
 
 ######## load OptimalX ########
 load(paste0(getwd(), "/results/OptimalX.RData"))
+
 ########constants##########
 
 N <- 10
