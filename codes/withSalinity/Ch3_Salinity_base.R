@@ -152,10 +152,10 @@ for (t in N:1){
   cat("t=", t, "/", N, "\n")
   
 }
-time <- proc.time() - tmp_time
+
 sfStop()
 profit_all <- list("Pessim" = profit_all_Pessim, "Optim" = profit_all_Optim)
 k_min <- list("Pessim" = k_min_Pessim, "Optim" = k_min_Optim)
 #save(profit_all, k_min, time, OptimalX_backup,
 #     file = "/soe/wjzhao/project/SalinityServer/result4.RData")
-save(profit_all, k_min, time, OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/result_base.R"))
+save(profit_all, k_min, OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/result_base.R"))
