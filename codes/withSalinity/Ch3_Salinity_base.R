@@ -6,7 +6,7 @@ setwd(dir)
 source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 
 ######## load OptimalX ########
-load(paste0(getwd(), "/results/OptimalX_base.RData"))
+load(paste0(getwd(), "/results/withSalinity/OptimalX_base.RData"))
 
 ########constants##########
 
