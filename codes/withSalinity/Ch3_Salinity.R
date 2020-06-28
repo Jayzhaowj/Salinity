@@ -3,10 +3,10 @@ library(nloptr)
 
 dir <- "/soe/wjzhao/project/Salinity/"
 setwd(dir)
-source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
+source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
 
 ######## load OptimalX ########
-load(paste0(getwd(), "/results/OptimalX_base.RData"))
+load(paste0(getwd(), "/results/withSalinity/OptimalX.RData"))
 
 ########constants##########
 
@@ -158,4 +158,4 @@ profit_all <- list("Pessim" = profit_all_Pessim, "Optim" = profit_all_Optim)
 k_min <- list("Pessim" = k_min_Pessim, "Optim" = k_min_Optim)
 #save(profit_all, k_min, time, OptimalX_backup,
 #     file = "/soe/wjzhao/project/SalinityServer/result4.RData")
-save(profit_all, k_min, time, OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/result_base.R"))
+save(profit_all, k_min, time, OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/result_copy.R"))

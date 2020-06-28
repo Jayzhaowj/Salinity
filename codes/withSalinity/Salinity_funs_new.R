@@ -398,28 +398,28 @@ findX <- function(init_fin, t, hyper_par){
 Pt_profit <- function(GW_tminus1, X_p_tminus1, 
                       Cgw_tminus1, 
                       GW_t , X_p_t, t, hyper_par, x){
-  AW_p <- 4.07
-  Interval <- 10
-  
-  mu <- 625000
-  sigma <- 400000
-  var <- sigma^2
-  logmu <- log((mu^2)/sqrt(var + mu^2))
-  logsigma <- sqrt(log(var/mu^2+1))
-  
-  z <- seq(0,4,1)
-  SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
+  # AW_p <- 4.07
+  # Interval <- 10
+  # 
+  # mu <- 625000
+  # sigma <- 400000
+  # var <- sigma^2
+  # logmu <- log((mu^2)/sqrt(var + mu^2))
+  # logsigma <- sqrt(log(var/mu^2+1))
+  # 
+  # z <- seq(0,4,1)
+  # SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
   
   x0 <- hyper_par$x0
   P <- hyper_par$P
   xLB <- hyper_par$xLB
   R <- hyper_par$R
   
-  SWneeded <- (GW_t-GW_tminus1)+AW_p*X_p_t*Interval
-  SWavailable <- Interval*sum(P*SW)
+  # SWneeded <- (GW_t-GW_tminus1)+AW_p*X_p_t*Interval
+  # SWavailable <- Interval*sum(P*SW)
   
   #browser()
-  if(SWneeded>SWavailable){
+  if(sum(is.na(x))>0){
     
     fun <- Inf
     

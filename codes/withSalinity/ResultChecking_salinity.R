@@ -4,7 +4,7 @@ dim(profit_all$Pessim[[1]])
 
 #### load the function
 setwd("D:/PhD_at_UCD/phd research/20_summer/Salinity")
-source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
+source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 
 
 #### create initials and finals
@@ -54,7 +54,7 @@ k_min_Xp[[i]] <- matrix(tmp, nrow = length(GW)*length(XpI), ncol = length(Cgw))
 
 # function
 type <- "Pesimmistic"
-hyper_par <- list(x0 = numeric(15), P = c(0.25, 0.25, 0.2, 0.2, 0.1), 
+hyper_par <- list(x0 = numeric(15), P = rep(0.2, 5), 
                   xLB = numeric(15), R = 0.035, type = type, Cgw = Cgw)
 
 ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
@@ -88,7 +88,7 @@ ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
 
 # store the best decision from 1st stage to last stage
 result <- rep(list(NA), N)
-result[[1]] <- ReturnFinal(GW_tminus1 = 11000000, X_p_tminus1 = 50000, Cgw_tminus1 = 500, hyper_par = hyper_par, t = 1)
+result[[1]] <- ReturnFinal(GW_tminus1 = 12000000, X_p_tminus1 = 50000, Cgw_tminus1 = 1500, hyper_par = hyper_par, t = 1)
 
 for(i in 2:N){
   initial_value <- as.numeric(InitialTable[result[[i-1]]$index_x, ])
