@@ -7,11 +7,14 @@ source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 
 ######## load OptimalX ########
 load(paste0(getwd(), "/results/withSalinity/OptimalX.RData"))
-
+OX1 <- OptimalX_backup
+rm(OptimalX_backup)
+load(paste0(getwd(), "/results/withSalinity/OptimalX_base.RData"))
+OX2 <- OptimalX_backup
+rm(OptimalX_backup)
 ########constants##########
 
 N <- 10
-
 
 ###########################################
 ### run dynamic programming with optimistic way
@@ -69,19 +72,21 @@ for (t in N:1){
     
     final <- CreateGrid(list(10000000, XpF))
     init_fin_index <- init_fin[, 1] == 10000000
-    OptimalX <- OptimalX_backup[init_fin_index]
+    OptimalX1 <- OX1[init_fin_index]
+    OptimalX2 <- OX2[init_fin_index]
     
   }else{
     
     final <- CreateGrid(list(GW, XpF))
-    OptimalX <- OptimalX_backup
+    OptimalX1 <- OX1
+    OptimalX2 <- OX2
   }
   #sfExport("t", "final", "profit_all", "OptimalX")
   sfExportAll()
   temp_result <- sfLapply(x = 1:length(Initial_Divide), 
-                          fun = function(W) wrapper(initial = Initial_Divide[[W]], 
+                          fun = function(W) wrapper_compare(initial = Initial_Divide[[W]], 
                                                     final = final, profit_tplus1 = profit_all_Optim[[t+1]],
-                                                    hyper_par = hyper_par, t = t, OptimalX = OptimalX, 
+                                                    hyper_par = hyper_par, t = t, OptimalX1 = OX1, OptimalX2 = OX2, 
                                                     index_div = W))
   #temp_result <- lapply(X = Initial_Divide, FUN = function(W) wrapper(initial = W, final = final, profit_tplus1 = profit_all[[t+1]],
   #                                                                  hyper_par = hyper_par, t = t))

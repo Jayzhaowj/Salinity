@@ -2,6 +2,9 @@
 # it should be 99 (9 GW * 11 XpI) by 10 (10 Salinities)
 dim(profit_all$Pessim[[1]])
 
+# incoming perennial crops = 50000 acres
+profit_all$Pessim[[1]][46:54, ]/(-1000000)
+
 #### load the function
 setwd("D:/PhD_at_UCD/phd research/20_summer/Salinity")
 source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))

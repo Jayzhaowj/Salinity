@@ -35,8 +35,8 @@ Init_Fin_Divde <- DivideWork(init_fin, NofCore)
 tmp_time <- proc.time()
 sfExportAll()
 temp_OptimalX <- sfLapply(x = Init_Fin_Divde, fun = function(W) findX(init_fin = W, 
-                                                                      t = 1, hyper_par = hyper_par))
+                                                                      t = 3, hyper_par = hyper_par))
 
 OptimalX_backup <- unlist(temp_OptimalX, recursive = FALSE)
 sfStop()
-save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX_base.RData"))
+save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX_base_test.RData"))
