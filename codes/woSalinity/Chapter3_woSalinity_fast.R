@@ -92,19 +92,122 @@ C_1year <- function(x, GW_tminus1, GW_t, P){
   
 }
 
+# P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
+#   
+#   AW_p <- 4.07
+#   Interval <- 10
+#   
+#   mu <- 625000
+#   sigma <- 400000
+#   var <- sigma^2
+#   logmu <- log((mu^2)/sqrt(var + mu^2))
+#   logsigma <- sqrt(log(var/mu^2+1))
+#   
+#   z <- seq(0,4,1)
+#   SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
+#   
+#   x0 <- hyper_par$x0
+#   P <- hyper_par$P
+#   xLB <- hyper_par$xLB
+#   R <- hyper_par$R
+#   INI_P <- hyper_par$INI_P
+#   
+#   SWneeded <- (GW_t-GW_tminus1)+AW_p*X_p_t*Interval
+#   SWavailable <- Interval*sum(P*SW)
+#   
+#   #browser()
+#   if(SWneeded>SWavailable){
+#     
+#     OptimalX <- NA
+#     
+#   }else{
+#     
+#     OBJ <- function(x){
+#       
+#       Interval <- 10
+#       
+#       FtoP <- (1-(1+R)^(-Interval))/(R*(1+R)^((t-1)*Interval))
+#       BP_1y <- BP_1year(X_p_t)
+#       INIP_Ty <- INIP_Tyear(X_p_tminus1, X_p_t, t, R, INI_P)
+#       PA_1y <- PA_1year(x, P)
+#       C_1y <- C_1year(x, GW_tminus1, GW_t, P)
+#       
+#       obj <- -FtoP*(PA_1y-C_1y+BP_1y)+INIP_Ty
+#       
+#       return(obj)
+#     }
+#     
+#     eqCON <- function(x){
+#       
+#       Interval <- 10
+#       AW_p <- 4.07
+#       AW_a <- 4.84
+#       phi <- 0.15
+#       cap <- 15
+#       
+#       X_a_t <- x[1:5]
+#       X_r_t <- x[6:10]
+#       W_p_t <- x[11:15]
+#       
+#       GW_use <- -phi*Interval*AW_p*X_p_t
+#       GW_use <- GW_use + Interval*sum(P*(W_p_t-cap*X_r_t-phi*AW_a*X_a_t))
+#       
+#       return(GW_tminus1-GW_t-GW_use)
+#       
+#     }
+#     
+#     ineqCON <- function(x){
+#       
+#       L <- 500000
+#       cap <- 15
+#       AW_p <- 4.07
+#       AW_a <- 4.84
+#       
+#       mu <- 625000
+#       sigma <- 400000
+#       var <- sigma^2
+#       logmu <- log((mu^2)/sqrt(var + mu^2))
+#       logsigma <- sqrt(log(var/mu^2+1))
+#       
+#       z <- seq(0,4,1)
+#       SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
+#       
+#       X_a_t <- x[1:5]
+#       X_r_t <- x[6:10]
+#       W_p_t <- x[11:15]
+#       
+#       remaining_land <- L - X_p_t - X_a_t - X_r_t
+#       remaining_water <- SW + W_p_t -cap*X_r_t - AW_p*X_p_t - AW_a*X_a_t
+#       
+#       return(c(remaining_land,remaining_water))
+#       
+#     }
+#     
+#     sol <- slsqp(x0, fn = OBJ, lower = xLB, upper = xUB,
+#                  hin = ineqCON, heq = eqCON, control = list(xtol_rel = 1e-8))
+#     #browser()
+#     #fun <- sol$value
+#     OptimalX <- sol$par
+#     
+#   }
+#   return(OptimalX)
+#   #return(list(fun=fun, OptimalX=OptimalX))
+#   
+# }
+
 P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
   
-  AW_p <- 4.07
-  Interval <- 10
-  
-  mu <- 625000
-  sigma <- 400000
-  var <- sigma^2
-  logmu <- log((mu^2)/sqrt(var + mu^2))
-  logsigma <- sqrt(log(var/mu^2+1))
-  
-  z <- seq(0,4,1)
-  SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
+  # AW_p <- 4.07
+  # Interval <- 10
+  # 
+  # mu <- 625000
+  # sigma <- 400000
+  # var <- sigma^2
+  # logmu <- log((mu^2)/sqrt(var + mu^2))
+  # logsigma <- sqrt(log(var/mu^2+1))
+  # 
+  # z <- seq(0,4,1)
+  # SW <- exp(qnorm(0.1+z*0.2)*logsigma+logmu)
   
   x0 <- hyper_par$x0
   P <- hyper_par$P
@@ -112,17 +215,17 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
   R <- hyper_par$R
   INI_P <- hyper_par$INI_P
   
-  SWneeded <- (GW_t-GW_tminus1)+AW_p*X_p_t*Interval
-  SWavailable <- Interval*sum(P*SW)
-  
-  #browser()
-  if(SWneeded>SWavailable){
+  # SWneeded <- (GW_t-GW_tminus1)+AW_p*X_p_t*Interval
+  # SWavailable <- Interval*sum(P*SW)
+  # 
+  # #browser()
+  # if(SWneeded>SWavailable){
+  #   
+  #   OptimalX <- NA
+  #   
+  # }else{
     
-    OptimalX <- NA
-    
-  }else{
-    
-    OBJ <- function(x){
+  OBJ <- function(x){
       
       Interval <- 10
       
@@ -135,9 +238,9 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
       obj <- -FtoP*(PA_1y-C_1y+BP_1y)+INIP_Ty
       
       return(obj)
-    }
+  }
     
-    eqCON <- function(x){
+  eqCON <- function(x){
       
       Interval <- 10
       AW_p <- 4.07
@@ -154,9 +257,9 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
       
       return(GW_tminus1-GW_t-GW_use)
       
-    }
+  }
     
-    ineqCON <- function(x){
+  ineqCON <- function(x){
       
       L <- 500000
       cap <- 15
@@ -181,15 +284,20 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, GW_t, X_p_t, t, hyper_par, xUB){
       
       return(c(remaining_land,remaining_water))
       
-    }
+  }
     
-    sol <- slsqp(x0, fn = OBJ, lower = xLB, upper = xUB,
-                 hin = ineqCON, heq = eqCON, control = list(xtol_rel = 1e-8))
+  sol <- slsqp(x0, fn = OBJ, lower = xLB, upper = xUB, 
+               hin = ineqCON, heq = eqCON, control = list(xtol_rel = 1e-8))
     #browser()
     #fun <- sol$value
-    OptimalX <- sol$par
+  OptimalX <- sol$par
+  
+  if (abs(eqCON(OptimalX))>10){
+    
+    OptimalX <- NA
     
   }
+  
   return(OptimalX)
   #return(list(fun=fun, OptimalX=OptimalX))
   
@@ -481,8 +589,8 @@ for (t in N:1){
   cat("t=", t, "/", N, "\n")
   
 }
-time <- proc.time() - tmp_time
+
 sfStop()
-save(profit_all, k_min, time, OptimalX_backup,
-     file = "/soe/wjzhao/project/SalinityServer/woSalinityDryR002.RData")
+save(profit_all, k_min, OptimalX_backup,
+     file = "/soe/wjzhao/project/Salinity/results/woSalinity/woSalinity_result_base.RData")
 
