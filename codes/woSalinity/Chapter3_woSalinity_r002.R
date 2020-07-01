@@ -16,7 +16,7 @@ source(paste0(getwd(), "/codes/woSalinity/NoSalinity_funs.R"))
 
 ########Load OptimalX#########
 
-load(paste0(getwd(), "/results/woSalinity/OptimalX_woSalinity_drier.RData"))
+load(paste0(getwd(), "/results/woSalinity/OptimalX_woSalinity_r002.RData"))
 
 
 ########## DP #############
@@ -100,5 +100,5 @@ for (t in N:1){
 
 sfStop()
 save(profit_all, k_min, OptimalX_backup,
-     file = "/soe/wjzhao/project/Salinity/results/woSalinity/woSalinity_result_drier.RData")
+     file = "/soe/wjzhao/project/Salinity/results/woSalinity/woSalinity_result_r002.RData")
 
