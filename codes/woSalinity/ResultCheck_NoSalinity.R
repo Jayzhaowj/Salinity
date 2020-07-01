@@ -102,3 +102,4 @@ for(i in 1:N){
   profit <- profit + result[[i]]$Profit
 }
 profit 
+
