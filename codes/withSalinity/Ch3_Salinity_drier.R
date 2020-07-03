@@ -1,11 +1,12 @@
 library(snowfall)
 library(nloptr)
-dir <- "/Users/johnn/Documents/Research/Salinity/"
+#dir <- "/Users/johnn/Documents/Research/Salinity/"
+dir <- "/soe/wjzhao/project/Salinity/"
 setwd(dir)
-source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
+source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 
 ######## load OptimalX ########
-load(paste0(getwd(), "/results/withSalinity/OptimalX2.RData"))
+load(paste0(getwd(), "/results/withSalinity/OptimalX_drier.RData"))
 ########constants##########
 
 N <- 10
@@ -38,7 +39,7 @@ hyper_par <- list(x0 = numeric(15), P = c(.25, .25, .2, .2, .1),
 
 
 #### set up number of cores
-NofCore <- 6
+NofCore <- 11
 
 
 #### set up initial and final table
@@ -150,7 +151,7 @@ for (t in N:1){
   cat("t=", t, "/", N, "\n")
   
 }
-time <- proc.time() - tmp_time
+#time <- proc.time() - tmp_time
 sfStop()
 profit_all <- list("Pessim" = profit_all_Pessim, "Optim" = profit_all_Optim)
 k_min <- list("Pessim" = k_min_Pessim, "Optim" = k_min_Optim)
