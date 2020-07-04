@@ -3,7 +3,7 @@ library(nloptr)
 #dir <- "/Users/johnn/Documents/Research/Salinity/"
 dir <- "/soe/wjzhao/project/Salinity/"
 setwd(dir)
-source(paste0(getwd(), "/codes/withSalinity/Salinity_funs.R"))
+source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 
 ########## Find optimal X ###############
 GW <- seq(8000000, 12000000, 500000)
@@ -39,4 +39,4 @@ temp_OptimalX <- sfLapply(x = Init_Fin_Divde, fun = function(W) findX(init_fin =
 
 OptimalX_backup <- unlist(temp_OptimalX, recursive = FALSE)
 sfStop()
-save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX3.RData"))
+save(OptimalX_backup, file = paste0(getwd(), "/results/withSalinity/OptimalX_r002.RData"))
