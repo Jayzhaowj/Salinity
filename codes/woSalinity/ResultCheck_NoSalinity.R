@@ -57,7 +57,7 @@ k_min_Xp[[N]] <- final2[k_min[, N], 2]
 
 # function
 #type <- "Pesimmistic"
-hyper_par <- list(x0 = numeric(15), P = c(0.2, 0.2, 0.2, 0.2, 0.2), xLB = numeric(15), R = 0.035, INI_P = 12000)
+hyper_par <- list(x0 = numeric(15), P = c(0.3, 0.3, 0.2, 0.1, 0.1), xLB = numeric(15), R = 0.035, INI_P = 12000)
 
 ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
   
@@ -91,6 +91,7 @@ ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
 # store the best decision from 1st stage to last stage
 result <- rep(list(NA), N)
 result[[1]] <- ReturnFinal(GW_tminus1 = 11000000, X_p_tminus1 = 50000, hyper_par = hyper_par, t = 1)
+#result[[1]]$X_p_t
 
 for(i in 2:N){
   initial_value <- as.numeric(InitialTable[result[[i-1]]$index_x, ])
