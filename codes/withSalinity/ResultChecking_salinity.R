@@ -4,6 +4,7 @@ dim(profit_all$Pessim[[1]])
 
 # incoming perennial crops = 50000 acres
 profit_all$Pessim[[1]][46:54, ]/(-1000000)
+round(profit_all$Pessim[[1]][46:54, ]/(-1000000), digits = 0)
 
 #### load the function
 setwd("D:/PhD_at_UCD/phd research/20_summer/Salinity")
@@ -91,7 +92,7 @@ ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
 
 # store the best decision from 1st stage to last stage
 result <- rep(list(NA), N)
-result[[1]] <- ReturnFinal(GW_tminus1 = 12000000, X_p_tminus1 = 50000, Cgw_tminus1 = 1500, hyper_par = hyper_par, t = 1)
+result[[1]] <- ReturnFinal(GW_tminus1 = 8000000, X_p_tminus1 = 50000, Cgw_tminus1 = 500, hyper_par = hyper_par, t = 1)
 
 for(i in 2:N){
   initial_value <- as.numeric(InitialTable[result[[i-1]]$index_x, ])
@@ -249,9 +250,9 @@ k_min_Xp_O[[i]] <- matrix(tmp, nrow = length(GW)*length(XpI), ncol = length(Cgw)
 ####### move forward
 
 # function
-type <- "Optimistic"
+type2 <- "Optimistic"
 hyper_par_O <- list(x0 = numeric(15), P = rep(0.2, 5), 
-                  xLB = numeric(15), R = 0.035, type = type, Cgw = Cgw)
+                  xLB = numeric(15), R = 0.035, type = type2, Cgw = Cgw)
 
 ReturnFinal_O <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
   
@@ -284,7 +285,7 @@ ReturnFinal_O <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
 
 # store the best decision from 1st stage to last stage
 result <- rep(list(NA), N)
-result[[1]] <- ReturnFinal_O(GW_tminus1 = 11000000, X_p_tminus1 = 50000, Cgw_tminus1 = 1500, hyper_par = hyper_par, t = 1)
+result[[1]] <- ReturnFinal_O(GW_tminus1 = 8000000, X_p_tminus1 = 50000, Cgw_tminus1 = 500, hyper_par = hyper_par, t = 1)
 
 for(i in 2:N){
   initial_value <- as.numeric(InitialTable[result[[i-1]]$index_x, ])
