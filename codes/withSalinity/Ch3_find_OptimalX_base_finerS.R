@@ -9,7 +9,7 @@ source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 GW <- seq(8000000, 12000000, 500000)
 XpI <- seq(25000, 75000, 5000)
 XpF <- seq(50000, 150000, 10000)
-Cgw <- seq(500, 3000, 250)
+Cgw <- seq(500, 5000, 250)
 
 type <- NULL
 hyper_par <- list(x0 = numeric(15), P = rep(0.2, 5), 
