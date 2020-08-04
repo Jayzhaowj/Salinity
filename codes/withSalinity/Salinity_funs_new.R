@@ -368,6 +368,12 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, GW_t, X_p_t, t, hyper_
     
   }
   
+  if (sum(ineqCON(OptimalX)<(-10))>0){
+    
+    OptimalX <- NA
+    
+  }
+  
   return(OptimalX)
   #return(list(fun=fun, OptimalX=OptimalX))
   
