@@ -361,16 +361,10 @@ P_Tyear <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, GW_t, X_p_t, t, hyper_
   #fun <- sol$value
   OptimalX <- sol$par
   
-  if (abs(eqCON(OptimalX))>10){
+  if (any(abs(eqCON(OptimalX))>10, sum(ineqCON(OptimalX)<(-10))>0)){
     
     OptimalX <- NA
     #fun <- Inf
-    
-  }
-  
-  if (sum(ineqCON(OptimalX)<(-10))>0){
-    
-    OptimalX <- NA
     
   }
   
