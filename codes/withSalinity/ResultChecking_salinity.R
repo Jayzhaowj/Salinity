@@ -15,7 +15,8 @@ source(paste0(getwd(), "/codes/withSalinity/Salinity_funs_new.R"))
 GW <- seq(8000000, 12000000, 500000)
 XpI <- seq(25000, 75000, 5000)
 XpF <- seq(50000, 150000, 10000)
-Cgw <- seq(500, 5000, 500)
+#Cgw <- seq(500, 5000, 500)
+Cgw <- seq(500, 5000, 250)
 
 final1 <- CreateGrid(list(GW, XpF))
 final2 <- CreateGrid(list(10000000, XpF))
@@ -58,7 +59,7 @@ k_min_Xp[[i]] <- matrix(tmp, nrow = length(GW)*length(XpI), ncol = length(Cgw))
 
 # function
 type <- "Pesimmistic"
-hyper_par <- list(x0 = numeric(15), P = rep(0.2, 5), 
+hyper_par <- list(x0 = numeric(15), P = c(0.2,0.2,0.2,0.2,0.2), 
                   xLB = numeric(15), R = 0.035, type = type, Cgw = Cgw)
 
 ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
@@ -92,7 +93,7 @@ ReturnFinal <- function(GW_tminus1, X_p_tminus1, Cgw_tminus1, hyper_par, t){
 
 # store the best decision from 1st stage to last stage
 result <- rep(list(NA), N)
-result[[1]] <- ReturnFinal(GW_tminus1 = 8000000, X_p_tminus1 = 50000, Cgw_tminus1 = 500, hyper_par = hyper_par, t = 1)
+result[[1]] <- ReturnFinal(GW_tminus1 = 9000000, X_p_tminus1 = 50000, Cgw_tminus1 = 3000, hyper_par = hyper_par, t = 1)
 
 for(i in 2:N){
   initial_value <- as.numeric(InitialTable[result[[i-1]]$index_x, ])
